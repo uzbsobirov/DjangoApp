@@ -10,7 +10,8 @@ class ProductListCreateAPIView(APIView):
     def get(slef, request):
         products = Product.objects.all()
         serializer = ProductSerializer(instance=products, many=True)
-        return Response(data=serializer.data)
+        print(serializer.data)
+        return Response(serializer.data)
 
     def post(slef, request):
         data = request.data
