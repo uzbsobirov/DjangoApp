@@ -10,7 +10,7 @@ class ProductListCreateAPIView(APIView):
     serializer_class = ProductSerializer
     def get(self, request):
         products = Product.objects.all()
-        serializer = self.serializer_class(instance=products, many=True)
+        serializer = ProductSerializer(instance=products, many=True)
         return Response(data=serializer.data)
 
     def post(self, request):
