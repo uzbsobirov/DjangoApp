@@ -1,10 +1,12 @@
 from django.shortcuts import render, get_object_or_404
-from .serializers import ProductSerializer, CategorySerializer
+from .serializers import ProductSerializer, CategorySerializer, PostSerializer
 from rest_framework.response import Response
 from rest_framework.request import Request
 from rest_framework.views import APIView
 from shop.models import Product, Category
 from rest_framework import status, generics
+from .models import Post
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser
 
 class ProductListCreateAPIView(APIView):
     serializer_class = ProductSerializer
@@ -66,3 +68,14 @@ class CategoryListCreateAPIView(generics.ListCreateAPIView):
 class CategoryRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+class PostListCreateAPIView(generics.ListCreateAPIView):
+    serializer_class = PostSerializer
+    queryset = Post.objects.all()
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+class PostRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = PostSerializer
+    queryset = Post.availabled.all()
+    # pagination_class = [IsAdminUser]
+    
