@@ -122,7 +122,7 @@
                             <!-- Begin Header Logo Area -->
                             <div class="col-lg-3">
                                 <div class="logo pb-sm-30 pb-xs-30">
-                                    <a href="shop/detail.html">
+                                    <a href="{% url 'shop:product_list' %}">
                                         <img src="{% static 'images/menu/logo/1.jpg' %}" alt="">
                                     </a>
                                 </div>
@@ -441,7 +441,7 @@
                     <div class="breadcrumb-content">
                         <ul>
                             <li><a href="index.html">Home</a></li>
-                            <li class="active">Products</li>
+                            <li class="active">{% block page %} {% endblock page %}</li>
                         </ul>
                     </div>
                 </div>
