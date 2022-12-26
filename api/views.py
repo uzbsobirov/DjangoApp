@@ -77,5 +77,5 @@ class PostListCreateAPIView(generics.ListCreateAPIView):
 class PostRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
     queryset = Post.availabled.all()
-    # pagination_class = [IsAdminUser]
+    pagination_class = [IsAdminUser]
     
