@@ -30,17 +30,13 @@
                                     <td class="li-product-name"><a href="#">{{ product.name }}</a></td>
                                     <td class="li-product-price"><span class="amount">$23.39</span></td>
                                     <td class="li-product-stock-status"><span class="in-stock">in stock</span></td>
-                                    {% comment %}
-                                    <td class="li-product-add-cart"><a href="#">add to cart</a></td>
-                                    <button class="add-to-cart" type="submit">Add to cart</button>
-                                    {% endcomment %}
                                     <td>
-                                        <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                                        <form action="\" method="post">
                                             {% csrf_token %}
                                             <a href="#" type="submit" class="btn btn-warning">Add to Cart</a>
                                         </form>
                                     </td>
-                                </tr>
+                                    </tr>
                             </tbody>
                         </table>
                     </div>

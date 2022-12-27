@@ -7,6 +7,8 @@ from shop.models import Product, Category
 from rest_framework import status, generics
 from .models import Post
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser
+from rest_framework.pagination import LimitOffsetPagination
+
 
 class ProductListCreateAPIView(APIView):
     serializer_class = ProductSerializer
@@ -71,11 +73,13 @@ class CategoryRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView
 
 class PostListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = PostSerializer
-    queryset = Post.objects.all()
+    queryset = Post.availabled.all()
     permission_classes = [IsAuthenticatedOrReadOnly]
+    pagination_class = LimitOffsetPagination
 
 class PostRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
     queryset = Post.availabled.all()
     pagination_class = [IsAdminUser]
+    pagination_class = LimitOffsetPagination
     
