@@ -45,6 +45,11 @@
         <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
         <!-- Modernizr js -->
         <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
+        <style>
+            .register-button:hover {
+                cursor: pointer;
+            }
+        </style>
     </head>
     <body>
     <!--[if lt IE 8]>
@@ -78,7 +83,7 @@
                                                 <ul class="ht-setting-list">
                                                     <li><a href="login-register.html">My Account</a></li>
                                                     <li><a href="checkout.html">Checkout</a></li>
-                                                    <li><a href="login-register.html">Sign In</a></li>
+                                                    <li><a href="{% url 'others:signin' %}">Sign In</a></li>
                                                 </ul>
                                             </div>
                                         </li>
