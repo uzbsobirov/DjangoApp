@@ -35,7 +35,8 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'others.apps.OthersConfig',
-    'api.apps.ApiConfig'
+    'api.apps.ApiConfig',
+    'accounts.apps.AccountsConfig'
 ]
 
 

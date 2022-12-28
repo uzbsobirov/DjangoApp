@@ -1,12 +1,13 @@
 from django.urls import path
-from .views import contact, wishlist, signin
+from .views import contact, wishlist, signin, checkout, about_us
 
 app_name = 'others'
 
 
 
 urlpatterns = [
-    path('', contact, name="contact"),
+    path('contact/', contact, name="contact"),
     path('wishlist/', wishlist, name="wishlist"),
-    path('login-register/', signin, name="signin")
+    path('checkout/', checkout, name="checkout"),
+    path('about-us/', about_us, name="about_us")
 ]
