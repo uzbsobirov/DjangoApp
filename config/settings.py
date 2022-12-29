@@ -5,6 +5,8 @@ env = Env()
 env.read_env()
 
 
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -36,7 +38,8 @@ INSTALLED_APPS = [
     'cart.apps.CartConfig',
     'others.apps.OthersConfig',
     'api.apps.ApiConfig',
-    'accounts.apps.AccountsConfig'
+    'accounts.apps.AccountsConfig',
+    'registration.apps.RegistrationConfig'
 ]
 
 
