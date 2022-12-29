@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import contact, wishlist, signin, checkout, about_us
+from .views import contact, wishlist, checkout, about_us
 
 app_name = 'others'
 

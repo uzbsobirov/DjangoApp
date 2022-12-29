@@ -9,8 +9,11 @@ def wishlist(request):
     return render(request=request, template_name="wishlist.html")
 
 
-def signin(request):
-    return render(request=request, template_name="signin.html")
+def register(request):
+    return render(request=request, template_name="registration/register.html")
+
+def login(request):
+    return render(request=request, template_name="registration/login.html")
     
 
 def checkout(request):
