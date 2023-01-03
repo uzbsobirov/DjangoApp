@@ -8,7 +8,7 @@ from rest_framework import status, generics
 from .models import Post
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework.pagination import LimitOffsetPagination
-
+from .paginations import CustomPaginations
 
 class ProductListCreateAPIView(APIView):
     serializer_class = ProductSerializer
@@ -66,6 +66,7 @@ class CategoriesListAPIView(generics.ListAPIView):
 class CategoryListCreateAPIView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    pagination_class = CustomPaginations
 
 class CategoryRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()

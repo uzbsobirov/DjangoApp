@@ -12,6 +12,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Favicon -->
+       <link rel="stylesheet" href="../static/css/slick.css">
         <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.png' %}">
         <!-- Material Design Iconic Font-V2.2.0 -->
         <link rel="stylesheet" href="{% static 'css/material-design-iconic-font.min.css' %}">
@@ -64,28 +65,38 @@
                     <div class="container">
                         <div class="row">
                             <!-- Begin Header Top Left Area -->
-                                <div class="header-top-left">
-                                    <ul class="phone-wrap">
-                                        <li><a href="{% url 'registration:login' %}" class="btn btn-warning">Login</a></li>
-                                    </ul>
-                                </div>
-                          
-
-                                <div class="header-top-left">
-                                    <ul class="phone-wrap">
-                                        <li><a href="{% url 'registration:register' %}" class="btn btn-warning">Register</a></li>
-                                    </ul>
-                                </div>
-                          
-
-
+                            {% if request.user.is_authenticated %}
                             <div class="col-lg-3 col-md-4">
-                                <div class="header-top-left">
+                                <div class="header-top-left right">
                                     <ul class="phone-wrap">
                                         <li><span>Telephone Enquiry:</span><a href="#">(+123) 123 321 345</a></li>
                                     </ul>
                                 </div>
                             </div>
+                            <div class="header-top-left right">
+                                <ul class="phone-wrap">
+                                    <li><a href="#" class="btn btn-warning">Log out</a></li>
+                                </ul>
+                            </div>
+                            {% else %}
+                            <div class=" left header-top-left ">
+                                    <ul class="phone-wrap">
+                                        <li><a href="{% url 'registration:login' %}" class="btn btn-warning">Login</a></li>
+                                    </ul>
+                            </div>
+                        
+
+                                <div class="header-top-left right">
+                                    <ul class="phone-wrap">
+                                        <li><a href="{% url 'registration:register' %}" class="btn btn-warning">Register</a></li>
+                                    </ul>
+                                </div>
+                            {% endif %}
+
+                          
+
+
+                            
                             
                             <!-- Header Top Left Area End Here -->
                             <!-- Begin Header Top Right Area -->
