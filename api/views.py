@@ -10,11 +10,18 @@ from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticate
 from rest_framework.pagination import LimitOffsetPagination
 from .paginations import CustomPaginations
 
-class ProductListCreateAPIView(APIView):
+class ProductListCreateAPIView(generics.GenericAPIView):
     serializer_class = ProductSerializer
+    pagination_class = CustomPaginations
+    queryset = Product.objects.all()
     def get(self, request):
-        products = Product.objects.all()
-        serializer = ProductSerializer(instance=products, many=True)
+        queryset = self.filter_queryset(self.get_queryset())
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+        # serializer = ProductSerializer(instance=queryset, many=True)
+        serializer = self.get_serializer(queryset, many=True)
         return Response(data=serializer.data)
 
     def post(self, request):
