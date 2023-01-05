@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from .forms import RegisterForm, LoginForm
 from .models import Register, Login
 from .validators import Validator
@@ -30,21 +31,22 @@ class RegisterClass(View):
             form = RegisterForm(request.POST)
             if form.is_valid():
                 form.save()
-            return redirect("shop:product_list")
+            return redirect("registration:login")
         else:
             return render(request, template_name=self.template_name, context={'valid': False})
 
-class LoginClass(View):
+class LoginView(View):
     template_name = 'registration/login.html'
-    def get(self, request):
-        return render(request=request, template_name=self.template_name)
-    def post(self, request):
-        print(request.POST)
-        form = LoginForm(data=request.POST)
-        if form.is_valid():
-            form = LoginForm(data=request.POST)
-            if form.is_valid():
-                form.save()
-            return redirect("shop:product_list")
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, {})
+
+    def post(self, request, *args, **kwargs):
+        email = request.POST.get('email', None)
+        password = request.POST.get('password', None)
+        user = authenticate(request, username=email.lower(), password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('shop:product_list')
         else:
-            return render(request, template_name=self.template_name)
+            return HttpResponse('error')
