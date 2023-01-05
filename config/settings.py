@@ -134,7 +134,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL='registration.Register'
-AUTHENTICATION_BACKENDS = 'registration.auth.EmailBackend'
+AUTHENTICATION_BACKENDS = ['registration.auth.EmailBackend']
 
 
 # Internationalization

@@ -1,4 +1,4 @@
-from .models import Register, Login
+from .models import Register
 from django.forms import ModelForm
 
 
@@ -7,7 +7,3 @@ class RegisterForm(ModelForm):
         model = Register
         fields = "__all__"
 
-class LoginForm(ModelForm):
-    class Meta:
-        model = Login
-        fields = "__all__"
