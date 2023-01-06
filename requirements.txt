@@ -5,3 +5,4 @@ crispy-bootstrap5
 django-crispy-forms
 djangorestframework
 environs
+django-filters

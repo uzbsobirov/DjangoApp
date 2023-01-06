@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_filters',
     # My apps
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
@@ -84,10 +85,19 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 #Permissions
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': 
-        ['rest_framework.permissions.IsAuthenticated'],
     'DEFAULT_PAGINATION_CLASS': 'api.paginations.CustomPaginations',
-    'PAGE_SIZE': 2
+    'PAGE_SIZE': 2,
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '10000/day',
+        'user': '10/day'
+    },
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'
+    ]
 }
 
 

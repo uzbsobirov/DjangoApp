@@ -9,11 +9,18 @@ from .models import Post
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework.pagination import LimitOffsetPagination
 from .paginations import CustomPaginations
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+from django.views.decorators.vary import vary_on_cookie, vary_on_headers
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
 
 class ProductListCreateAPIView(generics.GenericAPIView):
     serializer_class = ProductSerializer
     pagination_class = CustomPaginations
     queryset = Product.objects.all()
+    @method_decorator(cache_page(60*60*2))
+    @method_decorator(vary_on_cookie)
     def get(self, request):
         queryset = self.filter_queryset(self.get_queryset())
         page = self.paginate_queryset(queryset)
@@ -74,6 +81,9 @@ class CategoryListCreateAPIView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     pagination_class = CustomPaginations
+    filter_backends = [filters.SearchFilter]
+    lookup_field = ['slug']
+    search_fields = ['name']
 
 class CategoryRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
@@ -82,12 +92,13 @@ class CategoryRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView
 class PostListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = PostSerializer
     queryset = Post.availabled.all()
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    # permission_classes = [IsAuthenticatedOrReadOnly]
     pagination_class = LimitOffsetPagination
+
 
 class PostRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
     queryset = Post.availabled.all()
-    pagination_class = [IsAdminUser]
+    # pagination_class = [IsAdminUser]
     pagination_class = LimitOffsetPagination
     
