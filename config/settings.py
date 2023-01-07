@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'others.apps.OthersConfig',
     'api.apps.ApiConfig',
     'accounts.apps.AccountsConfig',
-    'registration.apps.RegistrationConfig'
+    'registrations.apps.RegistrationsConfig'
 ]
 
 
@@ -143,8 +143,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL='registration.Register'
-AUTHENTICATION_BACKENDS = ['registration.auth.EmailBackend']
+AUTH_USER_MODEL='registrations.RegisterModel'
+# AUTHENTICATION_BACKENDS = ['registration.auth.EmailBackend']
 
 
 # Internationalization
