@@ -37,9 +37,7 @@ class RegisterModel(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = [
         'first_name',
         'last_name',
-        'password',
-        'is_staff',
-        'is_superuser'
+        'password'
     ]
 
     objects = CustomUserManager()

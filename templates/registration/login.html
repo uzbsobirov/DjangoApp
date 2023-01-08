@@ -11,7 +11,7 @@
 {% block content %}
 <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb-30 col-md-6 offset-3">
     <!-- Login Form s-->
-    <form action="" method="post">
+    <form action="{% url 'registrations:login' %}" method="post">
         {% csrf_token %}
         <div class="login-form">
             <h4 class="login-title">Login</h4>
