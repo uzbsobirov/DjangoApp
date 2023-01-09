@@ -146,6 +146,7 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTH_USER_MODEL = 'registrations.RegisterModel'
 AUTHENTICATION_BACKENDS = ('registrations.auth.EmailBackend',)
 
+LOGIN_URL = 'registrations.view.LoginClass'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
