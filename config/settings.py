@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'django_filters',
+    'drf_yasg',
     # My apps
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
